@@ -1,0 +1,60 @@
+version: 2
+
+seeds:
+  - name: customers
+    description: Seed the mock customer data
+    docs:
+      show: true
+    config:
+      enabled: true
+      tags: [customers]      
+      schema: staging
+      full_refresh: true
+      column_types: {
+        id: varchar(256),
+        first_name: varchar(100),
+        last_name: varchar(100),
+        email: varchar(256),
+        ip_address: varchar(15),
+      }
+    columns:
+      - name: id
+        description: Unique ID of a Customer
+        quote: false
+        tags: [CustomerId]
+        tests:
+          - not_null
+          - unique
+      - name: first_name
+        description: First Name of a Customer
+        quote: false
+        tags: [CustomerFirstName]
+        tests:
+          - not_null
+      - name: last_name
+        description: Last Name of a Customer
+        quote: false
+        tags: [CustomerLastName]
+        tests:
+          - not_null
+      - name: email
+        description: Email Address of a Customer
+        quote: false
+        tags: [CustomerEmailAddress]
+        tests:
+          - not_null
+          - unique
+      - name: gender
+        description: Gender of a Customer
+        quote: false
+        tags: [CustomerGender]
+        tests:
+          - accepted_values:
+              values: ['Male', 'Female']
+      - name: ip_address
+        description: IP Address of the Customer
+        quote: false
+        tags: [CustomerIPAddress]
+        tests:
+          - not_null
+          - unique

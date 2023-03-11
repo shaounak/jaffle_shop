@@ -1,0 +1,43 @@
+Table _int.orders {
+  id int PK
+  user_id int
+  order_date date
+  status varchar
+}
+
+Table _int.payments {
+  id int
+  order_id int
+  payment_method varchar
+  amount int
+}
+
+Table _int.customers {
+  id int PK
+  first_name varchar
+  last_name varchar
+}
+
+Table stg.raw_orders {
+  id int PK
+  user_id int
+  order_date date
+  status varchar
+}
+
+Table stg.raw_payments {
+  id int
+  order_id int
+  payment_method varchar
+  amount int
+}
+
+Table stg.raw_customers {
+  id int PK
+  first_name varchar
+  last_name varchar
+}
+
+Ref: _int.orders.user_id > _int.customers.id
+
+Ref: _int.payments.order_id > _int.orders.id
